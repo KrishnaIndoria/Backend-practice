@@ -61,6 +61,51 @@ app.delete("/admin/:id",(req,res)=>{
         }
 })
 
+// this is for user to add food in his cart
+app.post("/user/:id",(req,res)=>{
+    const id = parseInt(req.params.id);
+    const fooditem = foodmenu.find(item=>item.id === id);
+
+    if(fooditem){
+        AddToCart.push(fooditem);
+        res.status(200).send("Item added in cart");
+    }
+    else{
+        res.send("Item out of stock");
+    }
+})
+
+app.delete("/user/:id",(req,res)=>{
+    const id = parseInt(req.params.id);
+    const index = AddToCart.findIndex(item=>item.id===id);
+    if(index!=-1){
+        AddToCart.splice(index,1);
+        res.send("Item removed succesfully");
+    }
+    else{
+        res.send("Item not present in cart");
+    }
+})
+
+app.get("/user",(req,res)=>{
+    if(AddToCart.length==0)
+        res.send("Cart is empty");
+    else{
+        res.send(AddToCart);
+    }
+})
+
+// error handling
+app.get("/dummy",(req,res)=>{
+    try{
+        JSON.parse("Hello"); //this will give an error, as"Hello" is not json
+        res.send("Success");
+    }
+    catch(err){
+        res.send("Some error occured")
+    }
+})
+
 app.listen(3000,(req,res)=>{
     console.log("Listening at port 3000")
 })
