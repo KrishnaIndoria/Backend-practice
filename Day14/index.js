@@ -19,11 +19,12 @@ app.post("/info",async (req,res)=>{
 
 })
 
+
 main()
-.then(()=>{
+  .then(() => {
     console.log("Connected to DB");
-    app.listen(3000,()=>{
-    console.log("Listening at port 3000");
-    })
-})
-.catch((err)=>console.log(err));
+    app.listen(process.env.PORT || 3000, () => {
+      console.log("Listening at port 3000");
+    });
+  })
+  .catch((err) => console.log(err));

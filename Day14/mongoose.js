@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 async function main(){
-  await mongoose.connect("mongodb+srv://krishnaindoria5:Jaishreeshyam@codingadda.b6dhtkv.mongodb.net/Bookstore");
+  await mongoose.connect(process.env.MONGO_URL);
 //   after '/' i wrote Bookstore , this creates a DB called Bookstore 
 
 //   schema (structure of db)

@@ -7,6 +7,6 @@ const userschema = new Schema({
     city:String
 })
 
-const User = mongoose.model("user",userschema);
+const User = mongoose.model("User",userschema);
 
 module.exports = User;
